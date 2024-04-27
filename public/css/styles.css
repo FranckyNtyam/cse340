@@ -4,3 +4,214 @@
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  max-width: 900px;
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+  background-color: white;
+}
+
+/* Header section */
+
+#top-header {
+  display: flex;
+ justify-content: space-between;
+}
+
+#main-heading {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+ #top-header a {
+  text-decoration: none;
+  color: black;
+}
+
+.siteName {
+  font-size: xx-large;
+  font-weight: 900;
+ margin: 10px 0px 0px 10px;
+}
+
+#tools  {
+  margin-right: 10px;
+  margin: 10px 10px 0px 0px;
+}
+
+nav {
+background-color: black;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px;
+  color: white;
+}
+nav ul li {
+  list-style: none;
+}
+/* Main section */
+#welcome-main-container {
+  position: relative;
+ margin: 1Opx;
+}
+
+.delorean-vehicule {
+ width: 100%;
+}
+
+
+.welcom-presentation {
+  position: absolute;
+  bottom: 10%;
+  left: 0%;
+ opacity: 0.9;
+  width:125px;
+  border: 25px;
+  background-color:rgb(251, 255, 255);
+  padding-bottom: 35px;
+
+}
+
+.own-today-image {
+  position: absolute;
+  bottom: 10%;
+  left: 0%;
+  width: 100px;
+  opacity: 1;
+  margin-left: 10px;
+
+
+}
+
+.main-heading-2 {
+  color: #3876BF;
+  font-weight: 600;
+  padding-left: 10px;
+  font-size: medium;
+}
+
+p {
+  margin-left: 10px;
+  color: #3876BF;
+  font-weight: 600;
+  line-height: 0.7;
+  font-size: medium;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-section h2 {
+ margin-left: 10px;
+}
+
+.dolerean-reviews {
+  display: flex;
+  flex-direction: column;
+ justify-items: center;
+ justify-content: space-between;
+}
+
+.dolerean-reviews ul li {
+  padding: 10px;
+}
+.delorean-upgrades {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.upgrade-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr ;
+  gap: 35px;
+  padding: 10px;
+}
+
+.upgrade-images > div {
+  background-color: #3876BF;
+}
+
+.fisrt-upgrade, .second-upgrade , .third-upgrade, .forth-upgrade {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+
+ .second-upgrade img {
+  padding-bottom: 10px;
+}
+
+ .upgrade-images img {
+  width: 100px;
+  top: 50%;
+  margin-left: 25%;
+  padding-top: 20px;
+
+}
+
+.upgrade-images a {
+  text-align: center;
+  background-color: aliceblue;
+  /* padding-top: 20px; */
+}
+
+/* footer */
+.copyright {
+  color: black;
+  font-size: small;
+}
+
+/* media queries */
+
+@media screen and (min-width: 640px) {
+  .main-section {
+    flex-direction: row;
+    
+  }
+
+  .dolerean-reviews {
+    order: 2;
+    
+  }
+.delorean-upgrades {
+  flex-grow: 2;
+}
+.dolerean-reviews ul {
+  font-size: 1.3rem;
+  padding-top: 10px;
+}
+
+.dolerean-reviews ul li {
+  padding: 20px;
+}
+  .upgrade-images {
+    gap: 15px;
+  }
+.own-today-image {
+  width: 200px;
+}
+.main-heading-2 {
+  font-size: 2rem;
+}
+.welcom-presentation {
+  width: 250px;
+  margin-left: 20px;
+  padding-bottom: 50px;
+}
+p {
+  line-height: 0.4;
+  font-size: 2rem;
+}
+
+}
