@@ -56,13 +56,11 @@ nav ul li {
 /* Main section */
 #welcome-main-container {
   position: relative;
- margin: 1Opx;
 }
 
 .delorean-vehicule {
  width: 100%;
 }
-
 
 .welcom-presentation {
   position: absolute;
