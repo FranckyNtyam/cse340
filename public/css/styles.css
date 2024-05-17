@@ -20,7 +20,9 @@ body {
   display: flex;
  justify-content: space-between;
 }
-
+.notice {
+   color: red;
+}
 #main-heading {
   padding-left: 10px;
   padding-bottom: 10px;
