@@ -1,0 +1,9 @@
+<!-- Content Heading of vehicule view-->
+<% if (title) {%>
+    <h1><%= title %></h1>
+    <% } else{
+        res.redirect('/')
+    } %>
+    <%# messages() %>
+    
+    <%- grid_detail %>

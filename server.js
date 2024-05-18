@@ -82,9 +82,7 @@ app.listen(port, () => {
  *************************/
 app.use(static)
 // index route
-//app.get("/", function(req, res){
-  //res.render("index", {title: "Home"})
-//})
+
 app.get("/", baseController.buildHome)
 
 //Inventory route

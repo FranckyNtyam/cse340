@@ -23,6 +23,15 @@ body {
 .notice {
    color: red;
 }
+/* Images vehicles*/
+#inv-display  li {
+ list-style: none;
+}
+
+li a {
+  text-decoration: none;
+  
+}
 #main-heading {
   padding-left: 10px;
   padding-bottom: 10px;
@@ -52,11 +61,18 @@ nav ul {
   justify-content: space-between;
   align-items: baseline;
   padding: 10px;
+ 
+}
+nav ul li a {
+  list-style: none;
   color: white;
 }
-nav ul li {
-  list-style: none;
+
+nav a:hover {
+background-color: aliceblue;
+color: black;
 }
+
 /* Main section */
 #welcome-main-container {
   position: relative;
