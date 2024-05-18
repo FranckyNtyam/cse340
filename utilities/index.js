@@ -65,28 +65,40 @@ Util.buildInventoryGridDetail = async function(data_detail){
     let grid_detail
     if(data_detail.length > 0){
         grid_detail= '<ul id="inv-detail">'
-        data_detail.forEach(vehicle => {
+        data_detail.forEach(details => {
+            
+
+            
             grid_detail+= '<li>'
-            grid_detail+= '<img src="' + vehicle.inv_image +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
+            grid_detail+= '<img src="' + details.inv_image +'" alt="Image of '+ details.inv_make + ' ' + details.inv_model
             +' on CSE Motors"/>'
+            grid_detail+='</li>'
+            grid_detail+='<li>'
             grid_detail+= '<div class="details">'
             grid_detail+= '<hr />'
             grid_detail+= '<h2>'
-            grid_detail+= vehicle.inv_make + ' '+ vehicle.inv_model + ' '+ vehicle.inv_year
+            grid_detail+= details.inv_make + ' '+ details.inv_model + ' '+ details.inv_year
             grid_detail+= '</h2>'
-            grid_detail+= '<p>'
-            grid_detail+= vehicle.inv_description
-            grid_detail+='</p>'
+            grid_detail+= '<div>'
+            grid_detail+= details.inv_description
+            grid_detail+='</div>'
+            grid_detail+='<br />'
+            grid_detail+= '<h3>Price</h3>'
             grid_detail+= '<span>$'
-            + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + 
-            '</span>'
-            grid_detail+='<hr/>'
-            grid_detail+= '<span>'
-                vehicle.inv_miles 
+            + new Intl.NumberFormat('en-US').format(details.inv_price) 
             grid_detail+='</span>'
+            grid_detail+= '<br />'
+            grid_detail+= '<h3>Mileage</h3>'
+            grid_detail+='<span>'
+            + new Intl.NumberFormat('en-US').format(details.inv_miles) 
+            grid_detail+='</span>'
+            grid_detail+='<hr/>'
             grid_detail+= '</div>'
             grid_detail+= '</li>'
+            
+        
         })
+        
         
         grid_detail+= '</ul>'
     } else {

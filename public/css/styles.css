@@ -72,6 +72,10 @@ nav a:hover {
 background-color: aliceblue;
 color: black;
 }
+/* Style vehicles details*/
+#inv-detail li {
+  list-style: none;
+}
 
 /* Main section */
 #welcome-main-container {
