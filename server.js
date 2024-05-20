@@ -15,6 +15,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const session = require("express-session")
 const pool = require("./database/")
 const utilities = require("./utilities/index")
+const invCont = require("./controllers/invController")
 
 
 /************************************ 

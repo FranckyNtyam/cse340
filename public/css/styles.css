@@ -6,7 +6,7 @@
 }
 
 body {
-  max-width: 900px;
+  max-width: 1200px;
   font-family: "Roboto", sans-serif;
   margin: 10px auto 10px auto;
   background-color: white;
@@ -19,13 +19,6 @@ body {
 #top-header {
   display: flex;
  justify-content: space-between;
-}
-.notice {
-   color: red;
-}
-/* Images vehicles*/
-#inv-display  li {
- list-style: none;
 }
 
 li a {
@@ -52,7 +45,7 @@ li a {
   margin-right: 10px;
   margin: 10px 10px 0px 0px;
 }
-
+/*Style navigation*/
 nav {
 background-color: black;
 }
@@ -60,7 +53,7 @@ nav ul {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 10px;
+  padding: 12px;
  
 }
 nav ul li a {
@@ -72,11 +65,58 @@ nav a:hover {
 background-color: aliceblue;
 color: black;
 }
+/* Style classification view*/
+#inv-display img {
+  width: 100%;
+  padding-right: 50px;
+}
+.classification-heading {
+  padding-left: 40px;
+}
+.namePrice {
+  margin-bottom: 10px;
+}
+.namePrice h2 a {
+  color: black;
+}
+.namePrice span {
+  background-color: #3876BF;
+  color: aliceblue;
+}
+.namePrice hr {
+  margin-right: 50px;
+}
+
+#inv-display  li {
+  list-style: none;
+ }
 /* Style vehicles details*/
+.detail-heading {
+  padding-left: 50px;
+}
 #inv-detail li {
   list-style: none;
 }
-
+#inv-detail img {
+   width: 100%;
+   padding: 10px;
+}
+.details {
+  padding: 10px;
+}
+.price-mil-color {
+  display: flex;
+  padding: 10px;
+}
+.price-mil-color h3 {
+  font-style: italic;
+  margin: 10px;
+}
+.price-mil-color span {
+  font-size: medium;
+  background-color: #3876BF;
+  color:aliceblue;
+}
 /* Main section */
 #welcome-main-container {
   position: relative;
@@ -240,5 +280,18 @@ p {
   line-height: 0.4;
   font-size: 2rem;
 }
-
+/* classification view*/
+#inv-display {
+  display: flex;
+}
+.namePrice h2 {
+  font-size: smaller;
+}
+/* detail view*/
+#inv-detail {
+  display: flex;
+}
+#inv-detail img {
+  height: 100%;
+}
 }

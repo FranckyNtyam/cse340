@@ -40,14 +40,16 @@ Util.buildClassificationGrid= async function(data){
             +' details"><img src="' + vehicle.inv_thumbnail +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
             +' on CSE Motors"/></a>'
             grid+= '<div class="namePrice">'
-            grid+= '<hr />'
+           
             grid+= '<h2>'
             grid+= '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'+ vehicle.inv_make + ' '+ vehicle.inv_model +  '</a>'
             grid+= '</h2>'
             grid+= '<span>$'
             + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + 
             '</span>'
+            grid+= '<hr />'
             grid+= '</div>'
+            
             grid+= '</li>'
         })
         
@@ -66,40 +68,48 @@ Util.buildInventoryGridDetail = async function(data_detail){
     if(data_detail.length > 0){
         grid_detail= '<ul id="inv-detail">'
         data_detail.forEach(details => {
-            
-
-            
             grid_detail+= '<li>'
             grid_detail+= '<img src="' + details.inv_image +'" alt="Image of '+ details.inv_make + ' ' + details.inv_model
             +' on CSE Motors"/>'
             grid_detail+='</li>'
-            grid_detail+='<li>'
             grid_detail+= '<div class="details">'
             grid_detail+= '<hr />'
             grid_detail+= '<h2>'
             grid_detail+= details.inv_make + ' '+ details.inv_model + ' '+ details.inv_year
             grid_detail+= '</h2>'
-            grid_detail+= '<div>'
             grid_detail+= details.inv_description
-            grid_detail+='</div>'
             grid_detail+='<br />'
-            grid_detail+= '<h3>Price</h3>'
+            grid_detail+='<div class ="price-mil-color">'
+            grid_detail+= '<h3>'
+            grid_detail+= "Price"
+            grid_detail+='<br/>'
             grid_detail+= '<span>$'
             + new Intl.NumberFormat('en-US').format(details.inv_price) 
             grid_detail+='</span>'
-            grid_detail+= '<br />'
-            grid_detail+= '<h3>Mileage</h3>'
+            grid_detail+='</h3>'
+            grid_detail+='<hr/>'
+            grid_detail+= '<h3>'
+            grid_detail+= "Mileage"
+            grid_detail+= '<br/>'
             grid_detail+='<span>'
             + new Intl.NumberFormat('en-US').format(details.inv_miles) 
             grid_detail+='</span>'
+            grid_detail+= '</h3>'
             grid_detail+='<hr/>'
+            grid_detail+= '<h3>'
+            grid_detail+= "Color"
+            grid_detail+= '<br/>'
+            grid_detail+='<span>'
+            + details.inv_color
+            grid_detail+='</span>'
+            grid_detail+= '</h3>'
+            grid_detail+='</div>'
             grid_detail+= '</div>'
-            grid_detail+= '</li>'
+            // grid_detail+= '</li>'
             
         
         })
-        
-        
+         
         grid_detail+= '</ul>'
     } else {
         grid_detail+= '<p class="notice">Sorry, no details vehicles could be found.</p>'
