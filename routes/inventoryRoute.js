@@ -11,6 +11,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Route to build inventory vehicules details.
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId))
 
-
+// intentional error route
+router.get("/err500", utilities.intentionalErrorHandler(invController.intentionalError))
 
 module.exports = router;

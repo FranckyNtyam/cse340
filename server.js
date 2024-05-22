@@ -74,13 +74,11 @@ app.use(static)
 
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
-// intentional error route
-app.get("/type/500", inventoryRoute)
 
 //Inventory route
 app.use("/inv", inventoryRoute)
 
-
+app.use("/err500", inventoryRoute)
 //Account route
 
 
@@ -90,6 +88,16 @@ app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
+app.use(async (err,req, res, next) =>{
+  let nav = await utilities.getNav()
+console.error(err.stack)
+res.status(500).render("errors/errohandler", {
+  title: "500",
+  messages: 'Something broke!',
+  nav,
+})
+
+})
 /**************************
  * Express Error Handler
  * Place after all other middleware
@@ -104,3 +112,5 @@ app.use(async (err, req,res,next) => {
     nav
   })
 })
+
+

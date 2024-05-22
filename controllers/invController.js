@@ -32,7 +32,9 @@ invCont.buildByInventoryId = async function (req, res, next){
         grid_detail, 
     })
 }
-
+invCont.inttentionalError =  async function(req, res, next){
+        
+}
 
 
 module.exports = invCont
