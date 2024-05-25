@@ -1,8 +1,28 @@
-<% if (title) {%>
+<% if (title) { %>
     <h1 class="login-register"><%= title %></h1>
     <% } else{
         res.redirect('/')
     } %> 
     <p><%- messages() %></p> 
-    <%- registration_view %>
-    
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+               <li><%= error.msg %></li>
+           <% }) %>
+        </ul>
+   <% } %>
+   <%- registration_view %>
+    <script>
+        const pwdBtn = document.querySelector("#pwdBtn");
+        pwdBtn.addEventListener("click", function() {
+            const pwdInput = document.getElementById("pwd");
+            const type = pwdInput.getAttribute("type");
+            if (type == "password") {
+                pwdInput.setAttribute("type", "text");
+                pwdBtn.innerHTML = "Hide Password";
+            } else {
+                pwdInput.setAttribute("type", "password");
+                pwdBtn.innerHTML = "Show Password";
+            }
+        })
+    </script>

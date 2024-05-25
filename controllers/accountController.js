@@ -7,6 +7,7 @@ async function buildLogin(req, res, next){
     res.render("../views/account/login.ejs", {
         title:"Login",
         nav,
+        errors: null,
         login_view,
     })
 }
@@ -17,6 +18,7 @@ async function buildRegistration(req, res, next){
     res.render("../views/account/register.ejs", {
         title:"Register",
         nav,
+        errors: null,
         registration_view,
     })
 }
@@ -44,6 +46,7 @@ async function registerAccount(req,res) {
         res.status(201).render("account/login", {
             title:"Login",
             nav,
+            errors,
             login_view,
         })
     } else {
@@ -51,6 +54,7 @@ async function registerAccount(req,res) {
         res.status(501).render("account/register", {
             title:"Registration",
             nav,
+            errors,
             registration_view,
         })
     }

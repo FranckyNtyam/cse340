@@ -31,7 +31,7 @@ Util.getNav = async function (req, res, next){
  * Build the classification view HTML
  ********************************************* */
 Util.buildClassificationGrid= async function(data){
-    let grid
+    let grid=''
     if(data.length > 0){
         grid= '<ul id="inv-display">'
         data.forEach(vehicle => {
@@ -65,7 +65,7 @@ Util.buildClassificationGrid= async function(data){
  * Build the details view HTML of vehicles
  ********************************************* */
 Util.buildInventoryGridDetail = async function(data_detail){
-    let grid_detail
+    let grid_detail=''
     if(data_detail.length > 0){
         grid_detail= '<ul id="inv-detail">'
         data_detail.forEach(details => {
@@ -129,8 +129,9 @@ Util.buildLoginView = async function(){
     login_view+='<label for="pwd">Password:</label>'
     login_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     login_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
+    login_view+='<span id="pwdBtn">Show Password</span><br/><br/>'
     login_view+='<input type="submit" value="Login">'
-    login_view+='<br/>'
+    login_view+='<br />'
     login_view+='<p>No account?<a href="/account/register">Sign-up</a></p>'
     login_view+='</form>'
 
@@ -142,8 +143,9 @@ Util.buildLoginView = async function(){
  ******************************* */
 Util.buildRegistrationView = async function(){
     let registration_view=''
-    registration_view+='<p class="ext-p-form">All fields are required</p>'
+    
     registration_view+= '<form class="register-form" action="/account/register" method="post" >'
+    registration_view+='<p class="ext-p-form">All fields are required</p>'
     registration_view+='<label for="first_name">First name</label>'
     registration_view+='<input type="text" name="account_firstname" required>'
     registration_view+='<label for="last_name">Last name</label>'
@@ -153,7 +155,7 @@ Util.buildRegistrationView = async function(){
     registration_view+='<label for="pwd">Password</label>'
     registration_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     registration_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
-
+     registration_view+='<span id="pwdBtn">Show Password</span><br/><br/>'
     registration_view+='<input type="submit" value="Register">'
    
     registration_view+='</form>'

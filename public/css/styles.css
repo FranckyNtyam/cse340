@@ -128,7 +128,7 @@ color: black;
   border-radius: 5px;
  
 }
-.login-register, .ext-p-form {
+.login-register {
   text-align: center;
 }
 
@@ -157,6 +157,10 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+.ext-p-form {
+  color: #cfcfcf;
+  font-size: small;
+}
 .login-form p {
   color: black;
   font-size: small;
@@ -285,7 +289,10 @@ p {
   color: black;
   font-size: small;
 }
-
+footer a{
+  color: red;
+  margin: 10px;
+}
 /* media queries */
 
 @media screen and (min-width: 640px) {
