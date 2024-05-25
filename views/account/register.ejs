@@ -1,0 +1,8 @@
+<% if (title) {%>
+    <h1 class="login-register"><%= title %></h1>
+    <% } else{
+        res.redirect('/')
+    } %> 
+    <p><%- messages() %></p> 
+    <%- registration_view %>
+    

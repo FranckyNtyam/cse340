@@ -1,9 +1,16 @@
 const express = require("express")
-const router = new express.Router()
+const accountRouter = new express.Router()
 const accountController = require("../controllers/accountController")
-const pool = require("../database")
+// const pool = require("../database")
+const utilities = require("../utilities/index")
 
+// login route
+accountRouter.get("/login", utilities.handleErrors(accountController.buildLogin)) 
 
-router.get("/login", accountController.buildLogin)
+// registretion route
+accountRouter.get("/register", utilities.handleErrors(accountController.buildRegistration))
 
-module.exports = buildLogin
+ //register post
+ accountRouter.post('/register', utilities.handleErrors(accountController.registerAccount))
+
+module.exports = accountRouter
