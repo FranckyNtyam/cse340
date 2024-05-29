@@ -46,18 +46,18 @@ async function getVehiclesDetailsByInventoryId(inv_id){
 }
 
 
-/*******************************
- * Check for existing name
- ******************************* */
-async function checkExistingName(classification_name){
-    try {
-        const sql = "SELECT * FROM public.classification WHERE classification_name =$1"
-        const name = await pool.query(sql, [classification_name])
-        return name.rows
-    } catch (error){
-        return error.message
-    }
-}
+// /*******************************
+//  * Check for existing name
+//  ******************************* */
+// async function checkExistingName(classification_name){
+//     try {
+//         const sql = "SELECT * FROM public.classification WHERE classification_name =$1"
+//         const name = await pool.query(sql, [classification_name])
+//         return name.rows
+//     } catch (error){
+//         return error.message
+//     }
+// }
 
 async function addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id){
     try {
@@ -71,4 +71,4 @@ async function addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv
 }
 
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehiclesDetailsByInventoryId, addNewClassification,checkExistingName, addNewVehicle};
+module.exports = {getClassifications, getInventoryByClassificationId, getVehiclesDetailsByInventoryId, addNewClassification, addNewVehicle};

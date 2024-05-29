@@ -77,7 +77,7 @@ invCont.buildAddVehicle = async function (req, res, next){
  invCont.addClassification = async function (req,res) {
     let nav = await utilities.getNav()
     const {classification_name} = req.body
-
+console.log("req.body:", req.body)
     const classificationResult = await invModel.addNewClassification(classification_name)
     const adclass_view = await utilities.buildAddClassificationView()
     const management_view = await utilities.buildManagementView()
@@ -109,16 +109,16 @@ invCont.buildAddVehicle = async function (req, res, next){
  ***************************************** */
 invCont.addVehicle = async function (req, res) {
     let nav = await utilities.getNav()
+    const advehicle_view = await utilities.buildAddVehicleView()
+    const management_view = await utilities.buildManagementView()
     const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
     console.log("req.body:", req.body)
     const inventoryResult = await invModel.addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
-
-    const advehicle_view = await utilities.buildAddVehicleView()
-    const management_view = await utilities.buildManagementView()
+ console.log("inventory result: ", inventoryResult)
     if (inventoryResult) {
         req.flash(
             "notice",
-            `Congratulations, ${in_make} ${in_model} ${in_year} is added in inventory.`
+            `Congratulations, ${inv_make} ${inv_model} ${inv_year} is added in inventory.`
         )
         res.status(201).render("./inventory/management_view", {
             title: "Vehicle Management",

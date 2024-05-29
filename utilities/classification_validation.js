@@ -12,8 +12,9 @@ validate.classificationRules = () => {
         .trim()
         .escape()
         .notEmpty()
+        .isAlpha()
         .isLength({min: 1})
-        .withMessage("Please provide a classification name"),
+        .withMessage("Please provide a classification name with only letters."),
         // .custom(async (classification_name)=>{
         //     const nameExists = await invModel.checkExistingName(classification_name)
         //     if (nameExists){
@@ -103,7 +104,8 @@ validate.inventoryRules = () => {
  * Check data and return errors or continue to add inventory
  ************************************** */
 validate.checkInvData = async (req, res, next) => {
-    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body;
+    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+    console.log("check inventory data req.body:", req.body)
     let errors = validationResult(req);
     if (!errors.isEmpty()){
         let nav = await utilities.getNav()

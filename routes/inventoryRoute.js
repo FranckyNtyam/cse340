@@ -35,7 +35,7 @@ router.get("/add_classification", utilities.handleErrors(invController.buildAddC
   //Inventory post
 router.post("/add_new_vehicle",
  validate.inventoryRules(),
- validate.checkInvData,
+//  validate.checkInvData,
  utilities.handleErrors(invController.addVehicle)
 )
 
