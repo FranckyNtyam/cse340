@@ -18,7 +18,7 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 router.get("/err500", utilities.intentionalErrorHandler(invController.intentionalError))
 
 // management route
-router.get("/management", utilities.handleErrors(invController.buildManagementView))
+router.get("/", utilities.handleErrors(invController.buildManagementView))
 
 //add classification route
 router.get("/add_classification", utilities.handleErrors(invController.buildAddClassification))
