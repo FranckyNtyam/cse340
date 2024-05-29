@@ -1,0 +1,14 @@
+<% if (title) {%>
+    <h1 class="detail-heading"><%= title %></h1>
+    <% } else{
+        res.redirect('/')
+    } %> 
+    <p><%- messages() %></p> 
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+               <li><%= error.msg %></li>
+           <% }) %>
+        </ul>
+   <% } %>
+   <%- management_view %>

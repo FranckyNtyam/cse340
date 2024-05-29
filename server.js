@@ -75,6 +75,7 @@ app.listen(port, () => {
  * Routes
  *************************/
 app.use(static)
+app.use(express.static(__dirname + '../public'));
 // index route
 
 app.get("/", utilities.handleErrors(baseController.buildHome))
@@ -86,6 +87,10 @@ app.use("/inv", inventoryRoute)
 app.use("/err500", inventoryRoute)
 
 app.use("/account", accountRouter)
+
+
+
+
 
 
 // file Not Found Route - must be last route in list
