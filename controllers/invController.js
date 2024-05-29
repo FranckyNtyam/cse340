@@ -111,7 +111,9 @@ invCont.addVehicle = async function (req, res) {
     let nav = await utilities.getNav()
     const advehicle_view = await utilities.buildAddVehicleView()
     const management_view = await utilities.buildManagementView()
-    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+    const data = await invModel.getClassifications()
+    let classification_id = data.rows[0].classification_id
+    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color} = req.body
     console.log("req.body:", req.body)
     const inventoryResult = await invModel.addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
  console.log("inventory result: ", inventoryResult)
