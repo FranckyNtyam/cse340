@@ -39,7 +39,7 @@ Util.buildClassificationGrid= async function(data){
             grid+= '<a href="../../inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
             +' details"><img src="' + vehicle.inv_thumbnail +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
-            +' on CSE Motors"/></a>'
+            +' on CSE Motors"></a>'
             grid+= '<div class="namePrice">'
            
             grid+= '<h2>'
@@ -48,7 +48,7 @@ Util.buildClassificationGrid= async function(data){
             grid+= '<span>$'
             + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + 
             '</span>'
-            grid+= '<hr />'
+            grid+= '<hr >'
             grid+= '</div>'
             
             grid+= '</li>'
@@ -71,35 +71,35 @@ Util.buildInventoryGridDetail = async function(data_detail){
         data_detail.forEach(details => {
             grid_detail+= '<li>'
             grid_detail+= '<img src="' + details.inv_image +'" alt="Image of '+ details.inv_make + ' ' + details.inv_model
-            +' on CSE Motors"/>'
+            +' on CSE Motors">'
             grid_detail+='</li>'
             grid_detail+= '<div class="details">'
-            grid_detail+= '<hr />'
+            grid_detail+= '<hr >'
             grid_detail+= '<h2>'
             grid_detail+= details.inv_make + ' '+ details.inv_model + ' '+ details.inv_year
             grid_detail+= '</h2>'
             grid_detail+= details.inv_description
-            grid_detail+='<br />'
+            grid_detail+='<br >'
             grid_detail+='<div class ="price-mil-color">'
             grid_detail+= '<h3>'
             grid_detail+= "Price"
-            grid_detail+='<br/>'
+            grid_detail+='<br>'
             grid_detail+= '<span>$'
             + new Intl.NumberFormat('en-US').format(details.inv_price) 
             grid_detail+='</span>'
             grid_detail+='</h3>'
-            grid_detail+='<hr/>'
+            grid_detail+='<hr>'
             grid_detail+= '<h3>'
             grid_detail+= "Mileage"
-            grid_detail+= '<br/>'
+            grid_detail+= '<br>'
             grid_detail+='<span>'
             + new Intl.NumberFormat('en-US').format(details.inv_miles) 
             grid_detail+='</span>'
             grid_detail+= '</h3>'
-            grid_detail+='<hr/>'
+            grid_detail+='<hr>'
             grid_detail+= '<h3>'
             grid_detail+= "Color"
-            grid_detail+= '<br/>'
+            grid_detail+= '<br>'
             grid_detail+='<span>'
             + details.inv_color
             grid_detail+='</span>'
@@ -125,13 +125,13 @@ Util.buildLoginView = async function(){
     let login_view=''
     login_view+= '<form class="login-form"  action="/account/login" method="post" >'
     login_view+='<label for="email">Email:</label>'
-    login_view+='<input type="email" name="account_email" required>'
+    login_view+='<input type="email" id="email"  name="account_email" required>'
     login_view+='<label for="pwd">Password:</label>'
     login_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     login_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
-    login_view+='<span id="pwdBtn">Show Password</span><br/><br/>'
+    login_view+='<span id="pwdBtn">Show Password</span><br><br>'
     login_view+='<input type="submit" value="Login">'
-    login_view+='<br />'
+    login_view+='<br>'
     login_view+='<p>No account?<a href="/account/register">Sign-up</a></p>'
     login_view+='</form>'
 
@@ -146,16 +146,16 @@ Util.buildRegistrationView = async function(){
     
     registration_view+= '<form class="register-form" action="/account/register" method="post" >'
     registration_view+='<p class="ext-p-form">All fields are required</p>'
-    registration_view+='<label for="first_name">First name</label>'
-    registration_view+='<input type="text" name="account_firstname" required value="<%= locals.account_firstname %>">'
-    registration_view+='<label for="last_name">Last name</label>'
-    registration_view+='<input type="text" name="account_lastname" required value="<%= locals.account_lastname %>">'
+    registration_view+='<label for="firstName">First name</label>'
+    registration_view+='<input type="text" name="account_firstname" id="firstName" required value="<%= locals.account_firstname %>">'
+    registration_view+='<label for="lastName">Last name</label>'
+    registration_view+='<input type="text" id="lastName" name="account_lastname" required value="<%= locals.account_lastname %>">'
     registration_view+='<label for="email">Email address</label>'
-    registration_view+='<input type="email" name="account_email" required placeholder="Enter a valid email address"  value="<%= locals.account_email %>">'
+    registration_view+='<input type="email" id="email"  name="account_email" required placeholder="Enter a valid email address"  value="<%= locals.account_email %>">'
     registration_view+='<label for="pwd">Password</label>'
     registration_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     registration_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
-     registration_view+='<span id="pwdBtn">Show Password</span><br/><br/>'
+     registration_view+='<span id="pwdBtn">Show Password</span><br><br>'
     registration_view+='<input type="submit" value="Register">'
    
     registration_view+='</form>'
@@ -168,7 +168,7 @@ Util.buildRegistrationView = async function(){
 Util.buildManagementView = async function() {
     let management_view=""
     management_view+='<div class="view-management">'
-    management_view+='<a href="/inv/add_classification" class="anchor-management-view">Add New Classification</a><br/>'
+    management_view+='<a href="/inv/add_classification" class="anchor-management-view">Add New Classification</a><br>'
     management_view+='<a href="/inv/add_new_vehicle" class="anchor-management-view">Add New Vehicle</a>'
     management_view+='</div>'
 
@@ -182,8 +182,8 @@ Util.buildAddClassificationView = async function(){
           adclass_view+='<p><i>Field is REQUIRED</i></p>'
           adclass_view+='<div class="class-name">'
           adclass_view+='<p>Classification Name</p>'
-          adclass_view+='<label for="classification_name"><NAME><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</i></label>'
-          adclass_view+='<input type="text" name="classification_name"  required pattern="[A-Za-z]+"><br/>'
+          adclass_view+='<label for="classificationName"><NAME><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</i></label>'
+          adclass_view+='<input type="text" name="classification_name" id="classificationName" required pattern="[A-Za-z]+"><br>'
           adclass_view+='<input type="submit" value="Add Classification">'
           adclass_view+='</div>'
           adclass_view+='</form>'
