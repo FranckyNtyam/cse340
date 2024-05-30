@@ -14,13 +14,7 @@ validate.classificationRules = () => {
         .notEmpty()
         .isAlpha()
         .isLength({min: 1})
-        .withMessage("Please provide a classification name with only letters."),
-        // .custom(async (classification_name)=>{
-        //     const nameExists = await invModel.checkExistingName(classification_name)
-        //     if (nameExists){
-        //         throw new Error("name exists. Please add different name")
-        //     }
-        // }),//on error this message is sent.
+        .withMessage("Please provide a classification name with only letters.")
     
     ]
 }
@@ -36,7 +30,7 @@ validate.checkClassData = async (req, res, next) => {
         let nav = await utilities.getNav()
         const adclass_view = await utilities.buildAddClassificationView()
         res.render("inventory/add_classification", {
-            errors: null,
+            errors,
             title:"Add New Classification",
             nav,
             adclass_view,
@@ -55,16 +49,17 @@ validate.inventoryRules = () => {
         body("inv_make")
         .trim()
         .isAlpha()
-        .withMessage('Contain only letters'),
+        .withMessage('Make is required and  must contains just letters'),
 
         body("inv_model")
-        .trim().isAlpha()
-        .withMessage('Contain only letters'),
+        .trim()
+        .isAlpha()
+        .withMessage('Model is required and must contain just letters'),
 
         body("inv_year")
         .trim()
-        .isInt({min:1860, max:2099})
-        .withMessage('Contain integer'),
+        .isInt({min:2000, max:2024})
+        .withMessage('Year is required and must contains integer between 2000 and 2024'),
 
         body("inv_description")
         .trim()
@@ -84,17 +79,17 @@ validate.inventoryRules = () => {
         body("inv_price")
         .trim()
         .isInt({min:0})
-        .withMessage('The cannot be negative number'),
+        .withMessage('Price is required and cannot be negative number'),
 
         body("inv_miles")
         .trim()
         .isInt({min:0})
-        .withMessage('Miles cannot be negative number'),
+        .withMessage('Miles is required and cannot be negative number'),
 
         body("inv_color")
         .trim()
         .isAlpha()
-        .withMessage('Contain only letters'),
+        .withMessage('Color name is required and must contain only letters'),
 
     ]
 
@@ -104,14 +99,14 @@ validate.inventoryRules = () => {
  * Check data and return errors or continue to add inventory
  ************************************** */
 validate.checkInvData = async (req, res, next) => {
-    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+    const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color} = req.body
     console.log("check inventory data req.body:", req.body)
     let errors = validationResult(req);
     if (!errors.isEmpty()){
         let nav = await utilities.getNav()
         const advehicle_view = await utilities.buildAddVehicleView()
         res.render("inventory/add_new_vehicle", {
-            errors: null,
+            errors,
             title:"Add New Vehicle",
             nav,
             advehicle_view,
@@ -124,7 +119,6 @@ validate.checkInvData = async (req, res, next) => {
             inv_price, 
             inv_miles, 
             inv_color, 
-            classification_id
         })
         return
     }

@@ -128,6 +128,10 @@ color: black;
   border-radius: 5px;
  
 }
+input:required:invalid{
+  background-color:#bdddd7 ;
+}
+
 .login-register {
   text-align: center;
 }
@@ -260,7 +264,7 @@ font-size: medium;
 
 /* Main section */
 .notice {
-  color: red;
+  color: #3876BF;
 }
 #welcome-main-container {
   position: relative;
@@ -378,7 +382,7 @@ p {
   font-size: small;
 }
 footer a{
-  color: red;
+  color: #3876BF;
   margin: 10px;
 }
 /* media queries */

@@ -14,7 +14,9 @@ accountRouter.get("/login", utilities.handleErrors(accountController.buildLogin)
   utilities.handleErrors(accountController.loginAccount))
 
 // registretion route
-accountRouter.get("/register", utilities.handleErrors(accountController.buildRegistration))
+accountRouter.get("/register",
+utilities.handleErrors(accountController.buildRegistration))
+
 
  //register post
  accountRouter.post('/register',
