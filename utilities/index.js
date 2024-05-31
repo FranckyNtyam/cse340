@@ -184,7 +184,7 @@ Util.buildAddClassificationView = async function(){
           adclass_view+='<p><i>Field is REQUIRED</i></p>'
           adclass_view+='<div class="class-name">'
           adclass_view+='<p>Classification Name</p>'
-          adclass_view+='<label for="classificationName"><NAME><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</i></label>'
+          adclass_view+='<label for="classificationName"><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</i></label>'
           adclass_view+='<input type="text" name="classification_name" id="classificationName" required pattern="[A-Za-z]+"><br>'
           adclass_view+='<input type="submit" value="Add Classification">'
           adclass_view+='</div>'
