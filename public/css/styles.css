@@ -66,6 +66,7 @@ background-color: aliceblue;
 color: black;
 }
 /* Style classification view*/
+
 #inv-display img {
   width: 100%;
   padding-right: 50px;
@@ -78,6 +79,7 @@ color: black;
 }
 .namePrice h2 a {
   color: black;
+  text-decoration: none;
 }
 .namePrice span {
   color: #3876BF;
@@ -86,8 +88,8 @@ color: black;
   margin-right: 50px;
 }
 
-#inv-display  li {
-  list-style: none;
+#inv-display  {
+ margin-left: 40px;
  }
 /* Style vehicles details*/
 .detail-heading {
@@ -113,8 +115,8 @@ color: black;
 }
 .price-mil-color span {
   font-size: medium;
-  background-color: #3876BF;
-  color:aliceblue;
+  color: #3876BF;
+  
 }
 
 /* Style registration and login form*/
@@ -432,7 +434,16 @@ p {
 }
 /* classification view*/
 #inv-display {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  justify-content: space-around;
+  margin-left: 10px;
+  
+}
+#inv-display img{
+height: 100%;
 }
 .namePrice h2 {
   font-size: smaller;

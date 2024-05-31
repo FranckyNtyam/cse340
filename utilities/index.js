@@ -33,13 +33,14 @@ Util.getNav = async function (req, res, next){
 Util.buildClassificationGrid= async function(data){
     let grid=''
     if(data.length > 0){
-        grid= '<ul id="inv-display">'
+        grid= '<div id="inv-display">'
         data.forEach(vehicle => {
-            grid+= '<li>'
+            grid+= '<div>'
             grid+= '<a href="../../inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
             +' details"><img src="' + vehicle.inv_thumbnail +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model
             +' on CSE Motors"></a>'
+            grid+= '</div>'
             grid+= '<div class="namePrice">'
            
             grid+= '<h2>'
@@ -51,10 +52,10 @@ Util.buildClassificationGrid= async function(data){
             grid+= '<hr >'
             grid+= '</div>'
             
-            grid+= '</li>'
+           
         })
         
-        grid+= '</ul>'
+        grid+= '</div>'
     } else {
         grid+= '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
@@ -67,12 +68,12 @@ Util.buildClassificationGrid= async function(data){
 Util.buildInventoryGridDetail = async function(data_detail){
     let grid_detail=''
     if(data_detail.length > 0){
-        grid_detail= '<ul id="inv-detail">'
+        grid_detail= '<div id="inv-detail">'
         data_detail.forEach(details => {
-            grid_detail+= '<li>'
+            grid_detail+= '<div>'
             grid_detail+= '<img src="' + details.inv_image +'" alt="Image of '+ details.inv_make + ' ' + details.inv_model
             +' on CSE Motors">'
-            grid_detail+='</li>'
+            grid_detail+='</div>'
             grid_detail+= '<div class="details">'
             grid_detail+= '<hr >'
             grid_detail+= '<h2>'
@@ -106,12 +107,13 @@ Util.buildInventoryGridDetail = async function(data_detail){
             grid_detail+= '</h3>'
             grid_detail+='</div>'
             grid_detail+= '</div>'
+           
             // grid_detail+= '</li>'
             
         
         })
          
-        grid_detail+= '</ul>'
+        grid_detail+= '</div>'
     } else {
         grid_detail+= '<p class="notice">Sorry, no details vehicles could be found.</p>'
     }
