@@ -158,7 +158,7 @@ Util.buildRegistrationView = async function(){
     registration_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     registration_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
      registration_view+='<span id="pwdBtn">Show Password</span><br><br>'
-    registration_view+='<input type="submit" value="Register">'
+    registration_view+='<input type="submit" id="submit" value="Register">'
    
     registration_view+='</form>'
 
@@ -185,7 +185,7 @@ Util.buildAddClassificationView = async function(){
           adclass_view+='<div class="class-name">'
           adclass_view+='<p>Classification Name</p>'
           adclass_view+='<label for="classificationName"><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY.</i></label>'
-          adclass_view+='<input type="text" name="classification_name" id="classificationName" required pattern="[A-Za-z]+"><br>'
+          adclass_view+='<input type="text" name="classification_name" id="classificationName"  required pattern="[A-Za-z]+"><br>'
           adclass_view+='<input type="submit" value="Add Classification">'
           adclass_view+='</div>'
           adclass_view+='</form>'
@@ -201,7 +201,7 @@ Util.buildAddVehicleView = async function(){
     advehicle_view+='<p>All fields are REQUIRED</p>'
     advehicle_view+='<div class="vehicle-form">'
     advehicle_view+='<label for="classification_name" >Classification</label>'
-    advehicle_view+='<select id="classification_name" name="classification_name">'
+    advehicle_view+='<select id="classification_name" name="classification_name"  required>'
     advehicle_view+="<option value=''>Choose a classification</option>"
     data.rows.forEach((row) => {
         advehicle_view+='<option value="'+ row.classification_id + '"'
@@ -212,29 +212,29 @@ Util.buildAddVehicleView = async function(){
     })
     advehicle_view+='</select>'
     advehicle_view+='<label for="inv_make">Make</label>'
-    advehicle_view+='<input type="text" name="inv_make" id="inv_make" required pattern="[A-Za-z]+">'
+    advehicle_view+='<input type="text" name="inv_make" id="inv_make"  required pattern="[A-Za-z]+">'
     advehicle_view+='<label for="inv_model">Model</label>'
     advehicle_view+='<input type="text" name="inv_model" id="inv_model" required pattern="[A-Za-z]+">'
     advehicle_view+='<label for="inv_description">Description</label>'
-    advehicle_view+='<textarea name="inv_description" id="inv_description" rows="6" cols="50" required>describe the vehicle...</textarea>'
+    advehicle_view+='<textarea name="inv_description" id="inv_description" rows="6" cols="50"  required>describe the vehicle...</textarea>'
     advehicle_view+='<label for="inv_image">Image Path</label>'
-    advehicle_view+='<input type="text" name="inv_image" id="inv_image" required>'
+    advehicle_view+='<input type="text" name="inv_image" id="inv_image"  required>'
     advehicle_view+='<label for="inv_thumbnail">Thumbnail Path</label>'
-    advehicle_view+='<input type="text" name="inv_thumbnail" id="inv_thumbnail" required>'
+    advehicle_view+='<input type="text" name="inv_thumbnail" id="inv_thumbnail"  required>'
     advehicle_view+='<label for="inv_price">Price</label>'
-    advehicle_view+='<input type="number" name="inv_price" id="inv_price" required>'
+    advehicle_view+='<input type="number" name="inv_price" id="inv_price"  required>'
     advehicle_view+='<label for="inv_year">Year</label>'
-    advehicle_view+='<input type="number" name="inv_year" id="inv_year" required>'
+    advehicle_view+='<input type="number" name="inv_year" id="inv_year"  required>'
     advehicle_view+='<label for="inv_miles">Miles</label>'
     advehicle_view+='<input type="number" name="inv_miles" id="inv_miles" required>'
     advehicle_view+='<label for="inv_color">Color</label>'
-    advehicle_view+='<input type="text" name="inv_color" id="inv_color" required pattern="[A-Za-z]+">'
+    advehicle_view+='<input type="text" name="inv_color" id="inv_color"  required pattern="[A-Za-z]+">'
     advehicle_view+='<input type="submit" value="Add Vehicle">'
     advehicle_view+='</div>'
 
     advehicle_view+='</form>'
 
-    return advehicle_view
+    return advehicle_view;
 }
 
 /*********************************

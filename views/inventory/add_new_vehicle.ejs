@@ -1,8 +1,5 @@
-<% if (title) {%>
-    <h1 class="detail-heading"><%= title %></h1>
-    <% } else{
-        res.redirect('/')
-    } %> 
+ <h1 class="detail-heading"><%= title %></h1>
+
     <p><%- messages() %></p> 
     <% if (errors) { %>
         <ul class="notice">
@@ -12,6 +9,80 @@
         </ul>
    <% } %>
 
-   <%- advehicle_view %>
-
+   <%- advehicle_view %> 
+<script>
+    window.onload = sessionStorage.clear()
+   const form = document.getElementById('add-vehicle-form');
+   const classification_name =document.getElementById('classification_name');
+   const make=document.getElementById('inv_make');
+   const model=document.getElementById('inv_model');
+   const description=document.getElementById('inv_description');
+   const image=document.getElementById('inv_image');
+   const thumbnail=document.getElementById('inv_thumbnail');
+   const price=document.getElementById('inv_price');
+   const year=document.getElementById('inv_year');
+   const miles=document.getElementById('inv_miles');
+   const color=document.getElementById('inv_color');
+form.addEventListener('submit', ()=>{
+    sessionStorage.setItem('classification_name', classification_name.value)
+   sessionStorage.setItem('inv_make', make.value)
+   sessionStorage.setItem('inv_model', model.value)
+   sessionStorage.setItem('inv_description', description.value)
+   sessionStorage.setItem('inv_image', image.value)
+   sessionStorage.setItem('inv_thumbnail', thumbnail.value)
+   sessionStorage.setItem('inv_price', price.value)
+   sessionStorage.setItem('inv_year', year.value)
+   sessionStorage.setItem('inv_miles', miles.value)
+   sessionStorage.setItem('inv_color', color.value)
+})
+    
+        if(sessionStorage.getItem('inv_make')!== undefined){
+            make.value =sessionStorage.getItem('inv_make')
+        }else{
+            make.value = ""
+        }
+        if(sessionStorage.getItem('inv_model')!== undefined){
+            model.value =sessionStorage.getItem('inv_model')
+        }else{
+            model.value = ""
+        }
+        if(sessionStorage.getItem('inv_description')!== undefined){
+            description.value =sessionStorage.getItem('inv_description')
+        }else{
+            description.value = ""
+        }
+        if(sessionStorage.getItem('inv_image')!== undefined){
+            image.value =sessionStorage.getItem('inv_image')
+        }else{
+            image.value = ""
+        }
+        if(sessionStorage.getItem('inv_thumbnail')!== undefined){
+            thumbnail.value =sessionStorage.getItem('inv_thumbnail')
+        }else{
+            thumbnail.value = ""
+        }
+        if(sessionStorage.getItem('inv_price')!== undefined){
+            price.value =sessionStorage.getItem('inv_price')
+        }else{
+            price.value = ""
+        }
+        if(sessionStorage.getItem('inv_year')!== undefined){
+            year.value =sessionStorage.getItem('inv_year')
+        }else{
+            year.value = ""
+        }
+        if(sessionStorage.getItem('inv_miles')!== undefined){
+            miles.value =sessionStorage.getItem('inv_miles')
+        }else{
+            miles.value = ""
+        }
+        if(sessionStorage.getItem('inv_color')!== undefined){
+            color.value =sessionStorage.getItem('inv_color')
+        }else{
+            color.value = ""
+        }
    
+      
+       
+   
+</script>

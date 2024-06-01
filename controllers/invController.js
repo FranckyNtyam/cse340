@@ -113,8 +113,7 @@ invCont.addVehicle = async function (req, res) {
     const management_view = await utilities.buildManagementView()
     const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color,classification_name} = req.body
    classification_id = parseInt(req.body.classification_name)
-//    console.log("body classification name:" , (req.body.classification_name))
-//    console.log("classification id:" ,classification_id)
+//    console.log("classification_id", classification_id)
     const inventoryResult = await invModel.addNewVehicle(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
  console.log("inventory result: ", inventoryResult)
     if (inventoryResult) {

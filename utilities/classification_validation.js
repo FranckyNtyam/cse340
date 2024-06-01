@@ -1,3 +1,4 @@
+const app = require("express")
 const utilities = require("./index")
 const {body, validationResult } = require("express-validator")
 const invModel = require("../models/inventory-model")
@@ -91,8 +92,6 @@ validate.inventoryRules = () => {
         .isAlpha()
         .withMessage('Color name is required and must contain only letters'),
 
-        // body("classification_id")
-        // .isInt({min:1})
 
     ]
 
@@ -104,14 +103,16 @@ validate.inventoryRules = () => {
 validate.checkInvData = async (req, res, next) => {
     const {inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
     console.log("check inventory data req.body:", req.body)
+    console.log("classificatio:", req.body.classification_name)
     let errors = validationResult(req);
     if (!errors.isEmpty()){
         let nav = await utilities.getNav()
         const advehicle_view = await utilities.buildAddVehicleView()
+
         res.render("inventory/add_new_vehicle", {
-            errors,
             title:"Add New Vehicle",
             nav,
+            errors,
             advehicle_view,
             inv_make, 
             inv_model, 
@@ -123,9 +124,13 @@ validate.checkInvData = async (req, res, next) => {
             inv_miles, 
             inv_color, 
             classification_id
+           
         })
         return
+        
+    } 
+        next()
     }
-    next()
-}
+   
+
 module.exports = validate

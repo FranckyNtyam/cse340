@@ -95,9 +95,9 @@ color: black;
 .detail-heading {
   padding-left: 50px;
 }
-#inv-detail li {
+/* #inv-detail li {
   list-style: none;
-}
+} */
 #inv-detail img {
    width: 100%;
    padding: 10px;
