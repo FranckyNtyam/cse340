@@ -17,6 +17,8 @@ const pool = require("./database/")
 const utilities = require("./utilities/index")
 const accountRouter = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
 
 
 
@@ -34,6 +36,10 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+// Cookie parser middleware
+app.use(cookieParser())
+
+app.use(utilities.checkJWTToken)
 
 //Express Messages Middleware
 app.use(require('connect-flash')())

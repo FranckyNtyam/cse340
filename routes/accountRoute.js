@@ -2,15 +2,14 @@ const express = require("express")
 const accountRouter = new express.Router()
 const accountController = require("../controllers/accountController")
 const utilities = require("../utilities/index")
-const regValidate = require("../utilities/account-validation")
+const Validate = require("../utilities/account-validation")
 
 // login route
 accountRouter.get("/login", utilities.handleErrors(accountController.buildLogin)) 
 
  //login post
  accountRouter.post('/login',
-  regValidate.loginRules(), 
-  regValidate.checkLogData,
+  Validate.checkLogData,
   utilities.handleErrors(accountController.loginAccount))
 
 // registretion route
@@ -20,15 +19,17 @@ utilities.handleErrors(accountController.buildRegistration))
 
  //register post
  accountRouter.post('/register',
-  regValidate.registationRules(), 
-  regValidate.checkRegData,
+  Validate.registationRules(), 
+  Validate.checkRegData,
   utilities.handleErrors(accountController.registerAccount))
 
-  // Process the login attempt
-  accountRouter.post(
-    "/login", (req,res) => {
-        res.status(200).send('login process')
-    }
-  )
+  // // Process the login attempt
+  // accountRouter.post(
+  //   "/login", (req,res) => {
+  //       res.status(200).send('login process')
+  //   }
+  // )
+
+  accountRouter.get("/account_management", utilities.handleErrors(accountController.buildAccountManagement))
 
 module.exports = accountRouter
