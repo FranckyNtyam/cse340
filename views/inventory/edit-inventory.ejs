@@ -1,0 +1,43 @@
+ <h1 class="detail-heading"><%= title %></h1>
+
+    <p><%- messages() %></p> 
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+               <li><%= error.msg %></li>
+           <% }) %>
+        </ul>
+   <% } %>
+  
+    <form id="update-vehicle-form" action="/inv/update" method="post">
+    <p>All fields are REQUIRED</p>
+    <div class="vehicle-form">
+    <label for="classification_name" >Classification</label>
+    <%- classification_select_view %>
+    <label for="inv_make">Make</label>
+    <input type="text" name="inv_make" id="inv_make" value="<%= inv_make %>" required pattern="[A-Za-z]+">
+    <label for="inv_model">Model</label>
+    <input type="text" name="inv_model" id="inv_model" value="<%= inv_model %>" required pattern="[A-Za-z]+">
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" id="inv_description" rows="6" cols="50"  value="<%= inv_description %>" required><%= inv_description %></textarea>
+    <label for="inv_image">Image Path</label>
+    <input type="text" name="inv_image" id="inv_image"  value="<%= inv_image %>" required>
+    <label for="inv_thumbnail">Thumbnail Path</label>
+    <input type="text" name="inv_thumbnail" id="inv_thumbnail" value="<%= inv_thumbnail %>" required>'
+    <label for="inv_price">Price</label>
+    <input type="number" name="inv_price" id="inv_price" value="<%= inv_price %>" required>
+    <label for="inv_year">Year</label>
+    <input type="number" name="inv_year" id="inv_year" value="<%= inv_year %>" required>
+    <label for="inv_miles">Miles</label>
+    <input type="number" name="inv_miles" id="inv_miles" value="<%= inv_miles %>" required>
+    <label for="inv_color">Color</label>
+    <input type="text" name="inv_color" id="inv_color" value="<%= inv_color %>" required pattern="[A-Za-z]+">
+    <input type="submit" name="submit" id="submitForm" value="Update Vehicle" disabled>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    </div>
+    
+    </form>
+
+    <script src="/js/inv-update.js"></script>

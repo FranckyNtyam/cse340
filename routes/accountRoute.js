@@ -5,7 +5,9 @@ const utilities = require("../utilities/index")
 const Validate = require("../utilities/account-validation")
 
 // login route
-accountRouter.get("/login", utilities.handleErrors(accountController.buildLogin)) 
+accountRouter.get("/login",
+
+utilities.handleErrors(accountController.buildLogin)) 
 
  //login post
  accountRouter.post('/login',
@@ -30,6 +32,8 @@ utilities.handleErrors(accountController.buildRegistration))
   //   }
   // )
 
-  accountRouter.get("/account_management", utilities.handleErrors(accountController.buildAccountManagement))
+  accountRouter.get("/account_management", 
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement))
 
 module.exports = accountRouter

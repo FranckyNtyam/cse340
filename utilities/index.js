@@ -167,13 +167,45 @@ Util.buildRegistrationView = async function(){
     return registration_view
 }
 
+Util.buildClassificationList = async function(classification_id ){
+    let data = await invModel.getClassifications()
+    let classification_select_view =''
+    classification_select_view+='<select id="classification_name" name="classification_name"  required>'
+    classification_select_view+="<option value=''>Choose a classification</option>"
+    data.rows.forEach((row) => {
+        classification_select_view+='<option value="'+ row.classification_id + '"'
+        if(classification_id != null && row.classification_id == classification_id){
+            classification_select_view+="selected"
+        }
+        classification_select_view+=">" + row.classification_name + "</option>"
+    })
+    classification_select_view+='</select>'
+
+    return classification_select_view
+}
 // build management view
 
 Util.buildManagementView = async function() {
     let management_view=""
+    let classification_id = null
+    let data = await invModel.getClassifications()
     management_view+='<div class="view-management">'
     management_view+='<a href="/inv/add_classification" class="anchor-management-view">Add New Classification</a><br>'
     management_view+='<a href="/inv/add_new_vehicle" class="anchor-management-view">Add New Vehicle</a>'
+    management_view+='<h2>Manage Inventory</h2>'
+    management_view+='<p>Select Classification in the list</p>'
+    management_view+='<select id="classificationList" name="classification_id"  required>'
+   management_view+="<option value=''>Choose a classification</option>"
+    data.rows.forEach((row) => {
+        management_view+='<option value="'+ row.classification_id + '"'
+        if(classification_id != null && row.classification_id == classification_id){
+           management_view+="selected"
+        }
+        management_view+=">" + row.classification_name + "</option>"
+    })
+   management_view+='</select>'
+     management_view+='<table id="inventoryDisplay"></table>'
+     management_view+='<noscript>JavaScript must be enabled to use this page</noscript>'
     management_view+='</div>'
 
     return management_view
@@ -194,6 +226,7 @@ Util.buildAddClassificationView = async function(){
 
           return adclass_view;
 }
+
 
 Util.buildAddVehicleView = async function(){
     let advehicle_view =''
@@ -270,4 +303,17 @@ Util.checkJWTToken = (req, res, next) => {
         next()
     }
 }
+
+/********************************************
+ * Check Login
+ ******************************************* */
+Util.checkLogin = (req, res, next) => {
+    if(res.locals.loggedin) {
+        next()
+    }else{
+        req.flash("notice", "Please log in.")
+        return res.redirect("/account/login")
+    }
+}
+
 module.exports = Util

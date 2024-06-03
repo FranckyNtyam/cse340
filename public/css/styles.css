@@ -209,7 +209,7 @@ a {
 }
 
 /* Style add classification form*/
-#add-class-form {
+#add-class-form , #update-vehicle-form{
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;

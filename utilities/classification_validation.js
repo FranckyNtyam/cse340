@@ -132,5 +132,95 @@ validate.checkInvData = async (req, res, next) => {
         next()
     }
    
+/**************************************
+ * Check data and return errors or continue to updating
+ ************************************** */
+validate.checkUpdateData = async (req, res, next) => {
+    const {inv_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+    console.log("check inventory data req.body:", req.body)
+    console.log("classificatio:", req.body.classification_name)
+    let errors = validationResult(req);
+    if (!errors.isEmpty()){
+        let nav = await utilities.getNav()
+        const classification_select_view= await utilities.buildClassificationList(classification_id)
+        // const make_model = `${req.body.inv_make}  ${req.body.inv_model}`
+        res.render("inventory/edit-inventory", {
+            title:"Edit ",
+            nav,
+            errors,
+            classification_select_view,
+            inv_id,
+            inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color, 
+            classification_id
+           
+        })
+        return
+        
+    } 
+        next()
+    }
+    
+// /*********************************
+//  * Inventory Data validation Rules
+//  ********************************** */
+// validate.newInventoryRules = () => {
+//     return [
+//         body("inv_make")
+//         .trim()
+//         .isAlpha()
+//         .withMessage('Make is required and  must contains just letters'),
+
+//         body("inv_model")
+//         .trim()
+//         .isAlpha()
+//         .withMessage('Model is required and must contain just letters'),
+
+//         body("inv_year")
+//         .trim()
+//         .isInt({min:2000, max:2024})
+//         .withMessage('Year is required and must contains integer between 2000 and 2024'),
+
+//         body("inv_description")
+//         .trim()
+//         .isLength({min:1})
+//         .withMessage('Description is required'),
+
+//         body("inv_image")
+//         .trim()
+//         .isAlpha()
+//         .isLength({min:1})
+//         .withMessage('Image path is required'),
+
+//         body("inv_thumbnail")
+//         .trim()
+//         .isAlpha()
+//         .isLength({min:1})
+//         .withMessage('Thumbnail path is required'),
+
+//         body("inv_price")
+//         .trim()
+//         .isInt({min:0})
+//         .withMessage('Price is required and cannot be negative number'),
+
+//         body("inv_miles")
+//         .trim()
+//         .isInt({min:0})
+//         .withMessage('Miles is required and cannot be negative number'),
+
+//         body("inv_color")
+//         .trim()
+//         .isAlpha()
+//         .withMessage('Color name is required and must contain only letters')
+//     ]
+
+// }
 
 module.exports = validate

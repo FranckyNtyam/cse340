@@ -1,3 +1,4 @@
+'use strict'
 const pwdBtn = document.querySelector("#pwdBtn");
 pwdBtn.addEventListener("click", function() {
     const pwdInput = document.getElementById("pwd");
@@ -10,3 +11,17 @@ pwdBtn.addEventListener("click", function() {
         pwdBtn.innerHTML = "Show Password";
     }
 })
+
+// Stick register form
+const firstNameId=document.getElementById('firstName');
+const lastNameId=document.getElementById('lastName');
+const emailId=document.getElementById('email');
+if(localStorage.account_firstname == undefined &localStorage.account_firstname == undefined & localStorage.account_firstname == undefined ){
+    firstNameId.value = " "
+    lastNameId.value=" "
+    emailId.value =" "
+}else{
+    firstNameId.value =localStorage.account_firstname;
+    lastNameId.value =localStorage.account_lastname;
+    emailId.value =localStorage.account_email;
+}
