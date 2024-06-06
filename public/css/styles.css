@@ -120,7 +120,7 @@ color: black;
 }
 
 /* Style registration and login form*/
-.register-form, .login-form {
+.register-form, .login-form, #update-account-form, #password-update-form{
   max-width: 300px;
   margin: 0 auto;
   padding: 20px;
@@ -153,13 +153,14 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  width: 100px;
-  padding: 10px;
+  width: 112px;
+  padding: 10px 2px;
   background-color: aliceblue;
   color: black;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  text-align: center;
 }
 #add-class-form input[type="submit"] {
   width: 120px;
@@ -169,6 +170,10 @@ input[type="submit"] {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+#update-account-form input[type="submit"]{
+  width: 120px;
 }
 .ext-p-form {
   color: #cfcfcf;
@@ -209,7 +214,7 @@ a {
 }
 
 /* Style add classification form*/
-#add-class-form , #update-vehicle-form{
+#add-class-form , #update-vehicle-form, #delete-form{
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
@@ -217,6 +222,18 @@ a {
   background-color: #3876BF;
   border-radius: 5px;
   
+}
+
+.management-account {
+  
+  padding: 10px;
+}
+.management-account h2, h3 {
+  margin-left: 20px;
+}
+.management-account p {
+  font-size: medium;
+  margin-left: 20px;
 }
 
 #add-class-form p {

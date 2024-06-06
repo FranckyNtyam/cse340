@@ -134,7 +134,7 @@ Util.buildLoginView = async function(){
     login_view+='<input type="password" name="account_password" id="pwd" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">'
     login_view+='<div class="required-pwd"><i>Password must be at least 12 characters, one must be a number, one must be  a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</i></div>'
     login_view+='<span id="pwdBtn">Show Password</span><br><br>'
-    login_view+='<input type="submit" value="Login">'
+    login_view+='<input type="submit" id="submitInput" value="Login">'
     login_view+='<br>'
     login_view+='<p>No account?<a href="/account/register">Sign-up</a></p>'
     login_view+='</form>'
@@ -289,17 +289,19 @@ Util.checkJWTToken = (req, res, next) => {
         jwt.verify(
             req.cookies.jwt,
             process.env.ACCESS_TOKEN_SECRET,
-            function (err, accountDAta){
+            function (err, accountData){
                 if(err){
                     req.flash("Please log in")
                     res.clearCookie("jwt")
                     return res.redirect("/account/login")
                 }
-                res.locals.accountDAta = accountDAta
+                res.locals.accountData = accountData
                 res.locals.loggedin =1
                 next()
             })
     }else{
+        res.locals.accountData = null
+        res.locals.loggedin = false
         next()
     }
 }
@@ -315,5 +317,36 @@ Util.checkLogin = (req, res, next) => {
         return res.redirect("/account/login")
     }
 }
+
+/********************************************
+ * // middleware that makes use of jwt token and check the account type, and only allows to inventory admin.
+ ******************************************* */
+Util.checkAccountType = (checkType) => {
+    return (req, res, next) => {
+        if(req.cookies.jwt) {
+            jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err, accountData) {
+                if(err) {
+                    req.flash("notice", "Please log in.")
+                    res.clearCookie("jwt");
+                    return res.redirect("/account/login")
+                }
+                if (checkType.includes(accountData.account_type)){
+                    res.locals.accountData = accountData;
+                    res.locals.loggedin = true
+                    next()
+                }else{
+                    req.flash("notice", "You are not permitted to access this resource.")
+                    return res.redirect("/account/login")
+                }
+            })
+        }else{
+            req.flash("notice", "Please log in.")
+            return res.redirect("/account/login")
+        }
+    }
+}
+
+
+
 
 module.exports = Util

@@ -92,13 +92,8 @@ validate.loginRules = () => {
         .notEmpty()
         .isEmail()
         .normalizeEmail() // refer to validator.js docs
-        .withMessage("A valid email is required.")
-        .custom(async (account_email)=>{
-            const emailExists = await accountModel.checkExistingEmail(account_email)
-            if (emailExists){
-                throw new Error("Email exists. Please log in or use different email")
-            }
-        }),
+        .withMessage("A valid email is required."),
+     
 
         //password is required and must be strong password
         body("account_password")
@@ -136,4 +131,43 @@ validate.checkLogData = async (req, res, next) => {
     }
     next()
 }
+
+validate.updateAccountRules = () => {
+    return [
+        body("account_firstname")
+        .trim()
+        .notEmpty()
+        .isLength({min:2})
+        .withMessage("First name must be a least 2 caracters long"),
+
+        body("account_lastname")
+        .trim()
+        .notEmpty()
+        .isLength({min:2})
+        .withMessage("Last name must be at least 2 characters "),
+        body("account_email")
+        .trim()
+        .notEmpty()
+        .isEmail()
+        .withMessage("Please provide a valid email.")
+
+    ]
+}
+
+validate.updatePasswordRules = () =>{
+    return[
+        body("newAccount_password")
+        .trim()
+        .notEmpty()
+        .isStrongPassword({
+            minLength: 12,
+            minLowercase: 1,
+            minUppercase: 1,
+            minNumbers: 1,
+            minSymbols: 1,
+        })
+        .withMessage("Password does not meet requirement."),
+    ]
+}
+
 module.exports = validate

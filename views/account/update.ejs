@@ -1,0 +1,40 @@
+<% if (title) {%>
+    <h1 class="login-register"><%= title %></h1>
+    <% } else{
+        res.redirect('/')
+    } %> 
+    <p><%- messages() %></p> 
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+               <li><%= error.msg %></li>
+           <% }) %>
+        </ul>
+   <% } %>
+
+   <form id="update-account-form" action="/account/update" method="post">
+    <label for="account_firstname">First Name:</label>
+    <input type="text" id="account_firstname" name="account_firstname" value="<%= locals.accountData.account_firstname %>" required>
+    <label for="account_lastname">Last Name:</label>
+    <input type="text" id="account_lastname" name="account_lastname" value="<%= locals.accountData.account_lastname %>" required>
+    <label for="account_email">Email Address:</label>
+    <input type="text" id="account_email" name="account_email" value="<%= locals.accountData.account_email %>" required>
+    <input type="hidden" name="account_id"
+    <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
+    <% } %>>
+    <input type="submit" id="submit" value="Update Account">
+
+   </form> 
+<div>
+   <form id="password-update-form" action="/account/update-password" method="post">
+    <span>Password must be minimun 12 characters long and contain at least 1 number, 1 capital letter, and 1 special character.</span><br><br>
+    <label for="pwd">New Password:</label>
+    <input type="password" id="pwd" name="newAccount_password" required>
+    <span id="pwdBtn">Show Password</span><br><br>
+    <input type="hidden" name="account_id"
+    <% if(locals.accountData.account_id) { %> value="<%= locals.accountData.account_id %>"
+    <% } %>>
+    <input type="submit"  value="Change Password">
+   </form>
+</div>
+   <script src="../../js/script.js"></script>

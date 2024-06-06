@@ -1,0 +1,26 @@
+<h1 class="detail-heading"><%= title %></h1>
+
+<p><%- messages() %></p> 
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error => { %>
+           <li><%= error.msg %></li>
+       <% }) %>
+    </ul>
+<% } %>
+
+<p>Confirm Deletion - The deletion is permanent.</p>
+<form id="delete-form" action="/inv/delete" method="post">
+    <label for="invMake">Make</label>
+    <input type="text" name="in_make" id="invMake" readonly<% if(locals.inv_make) {%> value="<%= locals.inv_make %>"<% } %>>
+    <label for="invModel">Model</label>
+    <input type="text" name="in_model" id="invModel" readonly<% if(locals.inv_model) {%> value="<%= locals.inv_model %>"<% } %>>
+    <label for="invPrice">Price</label>
+    <input type="number" name="in_price" id="invPrice" readonly<% if(locals.inv_price) {%> value="<%= locals.inv_price %>"<% } %>>
+    <label for="invYear">Year</label>
+    <input type="text" name="in_year" id="invYear" readonly<% if(locals.inv_year) {%> value="<%= locals.inv_year %>"<% } %>>
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+    <input type="submit" value="Delete">
+</form>
