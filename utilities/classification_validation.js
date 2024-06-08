@@ -167,60 +167,48 @@ validate.checkUpdateData = async (req, res, next) => {
     } 
         next()
     }
+
+    /*********************************
+ * Cart Data validation Rules
+ ********************************** */
+validate.cartRules = () => {
+    return[
+        //cart quantity is required and must be numeric
+        body("cart_quantity")
+        .trim()
+        .escape()
+        .notEmpty()
+        .isInt({min: 1})
+        .withMessage("Please provide a cart quantity with only number."),
+        body("inv_price")
+        .trim()
+        .notEmpty()
+        .isInt()
+        .withMessage('Price is required and cannot be negative number'),
+    ]
+}
     
-// /*********************************
-//  * Inventory Data validation Rules
-//  ********************************** */
-// validate.newInventoryRules = () => {
-//     return [
-//         body("inv_make")
-//         .trim()
-//         .isAlpha()
-//         .withMessage('Make is required and  must contains just letters'),
-
-//         body("inv_model")
-//         .trim()
-//         .isAlpha()
-//         .withMessage('Model is required and must contain just letters'),
-
-//         body("inv_year")
-//         .trim()
-//         .isInt({min:2000, max:2024})
-//         .withMessage('Year is required and must contains integer between 2000 and 2024'),
-
-//         body("inv_description")
-//         .trim()
-//         .isLength({min:1})
-//         .withMessage('Description is required'),
-
-//         body("inv_image")
-//         .trim()
-//         .isAlpha()
-//         .isLength({min:1})
-//         .withMessage('Image path is required'),
-
-//         body("inv_thumbnail")
-//         .trim()
-//         .isAlpha()
-//         .isLength({min:1})
-//         .withMessage('Thumbnail path is required'),
-
-//         body("inv_price")
-//         .trim()
-//         .isInt({min:0})
-//         .withMessage('Price is required and cannot be negative number'),
-
-//         body("inv_miles")
-//         .trim()
-//         .isInt({min:0})
-//         .withMessage('Miles is required and cannot be negative number'),
-
-//         body("inv_color")
-//         .trim()
-//         .isAlpha()
-//         .withMessage('Color name is required and must contain only letters')
-//     ]
-
-// }
+/**************************************
+ * Check data and return errors or continue to registration
+ ************************************** */
+validate.checkCartData = async (req, res, next) => {
+    const {inv_id, cart_quantity, cart_price} = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()){
+        let nav = await utilities.getNav()
+       
+        res.render("/inv/cart", {
+            title: "Shopping Cart",
+            nav,
+            errors: null,
+          inv_id,
+          cart_quantity,
+          cart_price,
+        })
+      
+    }
+    next()
+}
 
 module.exports = validate

@@ -55,4 +55,10 @@ router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteView))
 
 router.post("/delete", utilities.handleErrors(invController.deleteItem))
 
+router.get("/cart", utilities.handleErrors(invController.buildCart))
+
+router.post("/cart", 
+validate.cartRules(),
+utilities.handleErrors(invController.addToCartController))
+
 module.exports = router;

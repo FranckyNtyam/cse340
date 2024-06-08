@@ -43,6 +43,8 @@ async function buildAccountManagement(req, res, next){
        
     })
 }
+
+
 /*****************************************
  * Process Registration
  ***************************************** */
@@ -218,6 +220,7 @@ async function passwordUpdate(req, res) {
         })
     }
 }
+
 
 
 module.exports = {buildLogin, buildRegistration, registerAccount, loginAccount, buildAccountManagement, accountLogout, buildUpdateAccount,updateAccount, passwordUpdate}

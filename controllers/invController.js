@@ -25,10 +25,12 @@ invCont.buildByInventoryId = async function (req, res, next){
     const data_detail = await invModel.getVehiclesDetailsByInventoryId(inv_id)
     const grid_detail = await utilities.buildInventoryGridDetail(data_detail)
     let nav = await utilities.getNav()
+    const addCart_view = await utilities.buildAddCart(inv_id)
     const make_model = data_detail[0].inv_make + " " + data_detail[0].inv_model
     res.render("../views/inventory/vehicles_details.ejs", {
         title: make_model,
         nav,
+        addCart_view,
         grid_detail, 
     })
 }
@@ -260,5 +262,44 @@ invCont.deleteItem = async function(req, res, next){
         req.flash("notice", 'Sorry, the delete failed.')
         res.redirect("/inv/delete/inv_id")
     }
+}
+
+invCont.buildCart= async function (req, res, next){
+    let nav= await utilities.getNav()
+    console.log("request body: ", req.body)
+    res.render("./inventory/cart", {
+        title:"Shopping Cart",
+        nav,
+        errors:null,
+    })
+}
+invCont.addToCartController = async function(req, res){
+    let nav = await utilities.getNav()
+    let {inv_id, cart_quantity, cart_price} = req.body
+     inv_id = parseInt(req.body.inv_id)
+     cart_quantity = parseInt(req.body.cart_quantity)
+     cart_price = parseInt(req.body.cart_price)
+    
+    const addCartResult = await invModel.addToCart(inv_id, cart_quantity, cart_price )
+
+    if(addCartResult){
+        req.flash("notice","Product added to cart successfully." )
+        const invData = await invModel.getVehiclesDetailsByInventoryId(inv_id)
+        res.render("./inventory/cart", {
+            title: "Shopping Cart",
+            nav,
+            errors: null,
+          invData,
+          cart_quantity,
+          cart_price,
+         
+        })
+    }else{
+        req.flash("notice", "Sorry, the adding product failed")
+        res.redirect("/")
+    }
+
+   
+
 }
 module.exports = invCont

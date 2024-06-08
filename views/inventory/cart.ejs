@@ -1,0 +1,36 @@
+<% if (title) {%>
+    <h1 class="login-register"><%= title %></h1>
+    <% } else{
+        res.redirect('/')
+    } %> 
+    <p><%- messages() %></p> 
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error => { %>
+               <li><%= error.msg %></li>
+           <% }) %>
+        </ul>
+   <% } %>
+<div class="=cart-item">
+   <p>Your order: <%= locals.invData[0].inv_make %> <%= locals.invData[0].inv_model  %> <%= locals.invData[0].inv_year %>   </p> 
+    <img class="cart-img" src="<%= locals.invData[0].inv_image %>" alt="make image">
+    <p>Quantity: <%= locals.cart_quantity %></p>
+    <p>Total Price: <%= locals.cart_price * locals.cart_quantity %></p>
+
+    <form class="add-to-cart" action="/" method="post">
+        <input type="submit" value="Add to cart">
+    </form>
+</div>
+
+
+<script>
+    let counter_cart = document.getElementById('counter-cart')
+    const submitBtn = document.querySelector('.add-to-cart')
+    
+    submitBtn.addEventListener('submit', function(event){
+        event.preventDefault();
+        let currentCounter = parseInt(counter_cart.textContent);
+        counter_cart.textContent = currentCounter + 1
+    })
+    
+</script>

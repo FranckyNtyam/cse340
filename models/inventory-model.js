@@ -6,6 +6,12 @@ const pool = require("../database/index.js")
 async function getClassifications(){
     return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
+/* ***************************
+* Get all data from inventory table
+****************************** */
+async function getInventory(){
+    return await pool.query("SELECT * FROM public.inventory ORDER BY inv_make")
+}
 
 /**********************************
  * Get all inventory items and classification_name by classification_id
@@ -44,6 +50,8 @@ async function getVehiclesDetailsByInventoryId(inv_id){
         console.error("getinventoryid error " + error)
     }
 }
+
+
 
 /******************************
  * Add new inventory
@@ -87,5 +95,17 @@ async function deleteInventoryItem(inv_id) {
 }
 
 
+ /******************************
+ * Add new vehicle in cart
+ ****************************** */
+ async function addToCart(inv_id, cart_quantity, cart_price){
+    try {
+    const sql = "INSERT INTO public.cart (inv_id, cart_quantity, cart_price) VALUES ($1, $2, $3) RETURNING *"
+    const data = await pool.query(sql, [ inv_id, cart_quantity, cart_price])
+    return data.rows
+} catch(error) {
+    return error.message
+}
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehiclesDetailsByInventoryId, addNewClassification, addNewVehicle, updateInventory, deleteInventoryItem};
+module.exports = {getClassifications, getInventory, getInventoryByClassificationId, getVehiclesDetailsByInventoryId, addNewClassification, addNewVehicle, updateInventory, deleteInventoryItem, addToCart};

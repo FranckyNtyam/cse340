@@ -272,6 +272,22 @@ Util.buildAddVehicleView = async function(){
     return advehicle_view;
 }
 
+Util.buildAddCart = async function(inv_id){
+let addCart_view =''
+let data = await invModel.getVehiclesDetailsByInventoryId(inv_id)
+    addCart_view+='<form class="add-cart-form" action="/inv/cart" method="post">'
+   addCart_view+=' <label for="cart_quantity">Quantity:</label>'
+    addCart_view+='<input type="number" name="cart_quantity" id="cart_quantity"  value= "1" required><br><br>'
+   addCart_view+= '<label for="cart_price">Price:</label>'
+    addCart_view+='<input type="number" id="cart_price" name="cart_price" value="'+data[0].inv_price+'" readonly required><br><br>'
+    addCart_view+='<input type="hidden" name="inv_id" value="'+data[0].inv_id+'">'
+   addCart_view+=' <input class="add-btn" type="submit" value="Order" >'
+
+    addCart_view+='</form>'
+
+    return addCart_view
+}
+
 /*********************************
  * Middleware For Handling Errors
  * Wrap other function in this for
@@ -319,7 +335,7 @@ Util.checkLogin = (req, res, next) => {
 }
 
 /********************************************
- * // middleware that makes use of jwt token and check the account type, and only allows to inventory admin.
+ * // middleware that makes use of jwt token and check the account type.
  ******************************************* */
 Util.checkAccountType = (checkType) => {
     return (req, res, next) => {

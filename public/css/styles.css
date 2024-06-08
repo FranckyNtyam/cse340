@@ -278,8 +278,50 @@ font-size: medium;
   height: 40px;
   width: 100%;
 }
+/*Style cart view*/
+.cart-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
 
 
+.cart-items p {
+  font-size: small;
+}
+
+.cart-items .add-cart-form {
+  padding-left: 60px;
+}
+
+.cart-item {
+  text-align: center;
+}
+.cart-img {
+  width: 250px;
+  height: 250px;
+  margin-left: 20px;
+}
+
+.add-to-cart {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.cart-item p {
+  font-size: x-small;
+}
+
+.counter-icon {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+#tools {
+  display: flex;
+  gap: 10px;
+}
 /* Main section */
 .notice {
   color: #3876BF;

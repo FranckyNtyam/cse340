@@ -3,9 +3,14 @@
         <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
+<div class="counter-icon">
+           <a  class="counter-icon" href="/account/login" title="click to display cart shop"><img class="cart-icon" src="/images/site/cart-shop-icon.png" alt="cart shop icon"><span id="counter-cart">0</span></a>
            
+        </div>
+          
         <% if (locals.loggedin) {%>
             <a href="/account/management" id="welcome">Welcome <%= locals.accountData.account_firstname || accountData[0].account_firstname %></a>
+
             <form id="logout-form" action="/account" method="post">
                 <input type="submit" value="Logout" id="logout">
             </form>
@@ -15,4 +20,5 @@
                 <% } %>
                 
     </div>
+  
 </header>

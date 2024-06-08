@@ -26,3 +26,13 @@ if(localStorage.account_firstname == undefined &localStorage.account_firstname =
     emailId.value =localStorage.account_email;
 }
 
+
+
+    let counter_cart = document.getElementById('counter-cart')
+    const submitBtn = document.querySelector('.add-cart-form')
+    
+    submitBtn.addEventListener('submit', function(event){
+        let currentCounter = parseInt(counter_cart.textContent);
+        counter_cart.textContent = currentCounter + 1
+    })
+    

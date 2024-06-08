@@ -43,4 +43,5 @@ accountRouter.post("/update-password", validate.updatePasswordRules(),
 utilities.handleErrors(accountController.passwordUpdate))
 
 
+
 module.exports = accountRouter

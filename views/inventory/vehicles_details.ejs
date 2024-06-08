@@ -3,6 +3,12 @@
     <h1 class="detail-heading"><%= title %></h1>
     <% } else{
         res.redirect('/')
-    } %> 
+   } %> 
+   <p><% messages() %></p> 
+    <div class="cart-items">
+        <%- addCart_view %>
+        </div><br><br>
+ 
     <%- grid_detail %>
-    <p><%# messages() %></p> 
+    
+   
