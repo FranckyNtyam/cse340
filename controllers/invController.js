@@ -289,7 +289,12 @@ invCont.addToCartController = async function(req, res){
             title: "Shopping Cart",
             nav,
             errors: null,
-          invData,
+          invData: invData,
+          inv_make: invData[0].inv_make,
+          inv_model: invData[0].inv_model,
+          inv_price: invData[0].inv_price,
+          inv_year: invData[0].inv_year,
+          inv_image: invData[0].inv_image,
           cart_quantity,
           cart_price,
          

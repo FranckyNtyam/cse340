@@ -12,8 +12,8 @@
         </ul>
    <% } %>
 <div class="=cart-item">
-   <p>Your order: <%= locals.invData[0].inv_make %> <%= locals.invData[0].inv_model  %> <%= locals.invData[0].inv_year %>   </p> 
-    <img class="cart-img" src="<%= locals.invData[0].inv_image %>" alt="make image">
+   <p>Your order: <%= locals.inv_make %> <%= locals.inv_model  %> <%= locals.inv_year %>   </p> 
+    <img class="cart-img" src="<%= locals.inv_image %>" alt="make image">
     <p>Quantity: <%= locals.cart_quantity %></p>
     <p>Total Price: <%= locals.cart_price * locals.cart_quantity %></p>
 
